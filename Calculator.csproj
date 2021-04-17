@@ -95,7 +95,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="kisspng-computer-icons-calculator-business-calculator-5b0eddb58bb6f6.2332841515277009175723.png" />
+    <Resource Include="Icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
