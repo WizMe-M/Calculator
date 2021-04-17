@@ -51,6 +51,7 @@ namespace Calculator
                 ///
                 ///При нажатии на равно
 
+                CheckExcessZeroOrDot();
 
                 if (sign.Equals(""))
                 {
@@ -89,15 +90,8 @@ namespace Calculator
             try
             {
                 if (!current.Contains(','))
-                {
-                    if (!sign.Equals(""))
-                    {
-                        result.Content = "";
-                        total = "";
-                        sign = "";
-                    }
                     current += ",";
-                }
+
                 input.Content = current;
             }
             catch (Exception exc)
@@ -111,21 +105,24 @@ namespace Calculator
             try
             {
                 string s = (string)((Button)e.OriginalSource).Content;
+
+                if (sign.Equals("="))
+                {
+                    current = "0";
+                    result.Content = "";
+                    total = "";
+                    sign = "";
+                }
+
                 if (current[0] == '0')
                 {
                     if (current.Length == 1)
                     {
-                        if (sign.Equals("="))
-                        {
-                            result.Content = "";
-                            total = "";
-                            sign = "";
-                        }
 
                         current = s;
                     }
                     else current += s;
-                    
+
                 }
                 else current += s;
                 input.Content = current;
@@ -156,7 +153,7 @@ namespace Calculator
             result.Content = total + sign + current + chosenSign;
             DoOperation();
             input.Content = current;
-            current = "0";
+            //current = "0";
             sign = chosenSign;
         }
         void DoOperation()
@@ -183,16 +180,22 @@ namespace Calculator
                         break;
                 }
             }
-            catch (Exception)
+            catch (Exception exc)
             {
                 current = "";
                 sign = "";
                 total = "";
                 result.Content = "";
                 input.Content = "";
-                MessageBox.Show("Недостаточно операндов и/или нет знака операции.\nОчищаю все поля");
+                MessageBox.Show(exc.Message);
             }
         }
+        void CheckExcessZeroOrDot()
+        {
+            while (current[current.Length - 1] == '0' || current[current.Length - 1] == ',')
+                if (current.Contains(',')) current = current.Substring(0, current.Length - 1);
+                else break;
 
+        }
     }
 }
