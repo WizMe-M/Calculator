@@ -58,13 +58,13 @@
         </Grid.RowDefinitions>
         <Label x:Name="result"  Grid.Row="0" Grid.ColumnSpan="4" Style="{StaticResource GrayLab}" FontSize="14"/>
         <Label x:Name="input" Content="0" Grid.Row="1" Grid.ColumnSpan="4" Style="{StaticResource GrayLab}" FontSize="20"/>
-        <Button Grid.Column="0" Grid.Row="2" Content="%" Style="{StaticResource Operation}"/>
-        <Button Grid.Column="1" Grid.Row="2" Content="CE" Style="{StaticResource Operation}"/>
-        <Button Grid.Column="2" Grid.Row="2" Content="C" Style="{StaticResource Operation}"/>
-        <Button Grid.Column="3" Grid.Row="2" Content="DLT" Style="{StaticResource Operation}"/>
-        <Button Grid.Column="0" Grid.Row="3" Content="1/x" Style="{StaticResource Operation}"/>
-        <Button Grid.Column="1" Grid.Row="3" Content="x^2" Style="{StaticResource Operation}"/>
-        <Button Grid.Column="2" Grid.Row="3" Content="√x" Style="{StaticResource Operation}" />
+        <Button Grid.Column="0" Grid.Row="2" Content="%" Style="{StaticResource Other}"/>
+        <Button Grid.Column="1" Grid.Row="2" Content="CE" Style="{StaticResource Other}"/>
+        <Button Grid.Column="2" Grid.Row="2" Content="C" Style="{StaticResource Other}"/>
+        <Button Grid.Column="3" Grid.Row="2" Content="DLT" Style="{StaticResource Other}"/>
+        <Button Grid.Column="0" Grid.Row="3" Content="1/x" Style="{StaticResource Other}"/>
+        <Button Grid.Column="1" Grid.Row="3" Content="x^2" Style="{StaticResource Other}"/>
+        <Button Grid.Column="2" Grid.Row="3" Content="√x" Style="{StaticResource Other}" />
         <Button Grid.Column="3" Grid.Row="3" Content="=" Style="{StaticResource Operation}"/>
         <Button Grid.Column="0" Grid.Row="4" Content="7" Style="{StaticResource Number}"/>
         <Button Grid.Column="1" Grid.Row="4" Content="8" Style="{StaticResource Number}"/>

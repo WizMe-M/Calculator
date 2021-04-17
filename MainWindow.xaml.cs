@@ -20,183 +20,57 @@ namespace Calculator
     /// </summary>
     public partial class MainWindow : Window
     {
-        string first = ""; string second = "";
-        string current = "0"; string sign = "";  string total = "";
+        string current = "0"; string sign = ""; string total = "";
         public MainWindow()
         {
             InitializeComponent();
         }
 
-        void ClickOperation(object sender, RoutedEventArgs e)
+        private void ClickOperation(object sender, RoutedEventArgs e)
         {
             try
             {
-                string s = (string)((Button)e.OriginalSource).Content;
-             
-                //При нажатии на операцию содержимое текущей
-                
-                
-                
-                //input.Content += s;
-                bool isnum = Int32.TryParse(s, out _);
-                if (isnum)
+                string chosenSign = (string)((Button)e.OriginalSource).Content;
+
+                ///При нажатии на кнопку операции
+                ///будет выполняться предыдущая введенная функция (если она есть),
+                ///т.е. в поле total запишется результат операции полей current и total
+                ///sign получит знак текущей операции, а поле current будет очищено
+                ///
+                /// 
+                /// 
+                ///Если  же операции нет, то тогда просто 
+                ///в поле total запишется текущее число 
+                ///sign получит знак текущей операции, а поле current будет очищено
+
+                if (sign.Equals(""))
                 {
-                    if (sign != "")
-                    {
-                        total = current + sign;
-                        current = "";
-                    }
-                    if (current == "0")
-                        current += s;
+                    total = current;
+                    sign = chosenSign;
+                    current = "0";
+
+                    result.Content = total + sign;
+                    input.Content = current;
                 }
                 else
                 {
-
-                }
-
-
-
-
-                if (isnum)
-                {
-                    if (sign == "") first += s;
-                    else second += s;
-                }
-                else
-                {
-                    switch (s)
+                    if (chosenSign.Equals("="))
                     {
-                        case "CE":
-                            if (sign != "") second = "";
-                            first = "";
-                            sign = "";
-                            input.Content = "";
-                            break;
-                        case "C":
-                            first = "";
-                            sign = "";
-                            second = "";
-                            result.Content = "";
-                            input.Content = "";
-                            break;
-                        case "DLT":
-                            if (sign == "")
-                                if (first.Length != 0)
-                                    first = first.Remove(first.Length - 2, 1);
-                                else if (second.Length != 0)
-                                    second = second.Remove(second.Length - 2, 1);
-                            break;
-                        case "+/-":
-                            if (sign == "")
-                                if (first[0] == '-') first = first.Remove(0, 1);
-                                else first = "-" + first;
-                            else if (second[0] == '-') second = second.Remove(0, 1);
-                            else second = "-" + second;
-                            break;
-                        case "1/x":
-                            if (sign == "")
-                            {
-                                double d = Double.Parse(first);
-                                d = 1 / d;
-                                first = d.ToString();
-                            }
-                            else
-                            {
-                                double d = Double.Parse(second);
-                                d = 1 / d;
-                                second = d.ToString();
-                            }
-                            break;
-                        case "x^2":
-                            if (first != "" && sign == "")
-                                first = Math.Pow(Double.Parse(first), 2).ToString();
-                            else
-                                second = Math.Pow(Double.Parse(second), 2).ToString();
-                            input.Content = first + sign + second;
-                            break;
-                        case "√x":
-                            if (first != "")
-                                first = (Math.Sqrt(Double.Parse(first))).ToString();
-                            else
-                                second = Math.Sqrt(Double.Parse(second)).ToString();
-                            input.Content = first + sign + second;
-                            break;
-                        case "%":
-                            if (sign == "")
-                                first = (Double.Parse(first) / 10).ToString();
-                            else
-                                second = (Double.Parse(second) / 10).ToString();
-                            break;
-
-                        case "=":
-                            Equality(s);
-                            break;
-                        default:
-                            if (second != "")
-                            {
-                                if (sign != "") Equality(s);
-                                else
-                                {
-                                    DoOperation();
-                                    first = second;
-                                    second = "";
-                                }
-                            }
-                            sign = s;
-                            input.Content = first + s;
-                            break;
+                        Equality(chosenSign);
+                    }
+                    else
+                    {
+                        DoOperation();
                     }
                 }
             }
-            catch (Exception exc) { MessageBox.Show(exc.Message); }
-        }
-
-        void Equality(string s)
-        {
-            result.Content = first + sign + second + "=";
-            DoOperation();
-            input.Content = second;
-            if (s != "=") input.Content += s;
-            first = second;
-            second = "";
-        }
-
-        void DoOperation()
-        {
-            try
+            catch (Exception exc)
             {
-                double num1 = double.Parse(first);
-                double num2 = double.Parse(second);
-                // И выполняем операцию
-                switch (sign)
-                {
-                    case "+":
-                        second = (num1 + num2).ToString();
-                        break;
-                    case "-":
-                        second = (num1 - num2).ToString();
-                        break;
-                    case "*":
-                        double x = Math.Round(num1 * num2, 5);
-                        second = x.ToString();
-                        break;
-                    case "/":
-                        second = (num1 / num2).ToString();
-                        break;
-                }
-            }
-            catch (Exception)
-            {
-                first = "";
-                sign = "";
-                second = "";
-                result.Content = "";
-                input.Content = "";
-                MessageBox.Show("Недостаточно операндов и/или нет знака операции.");
+                MessageBox.Show(exc.Message);
             }
         }
 
-        void Dot(object sender, RoutedEventArgs e)
+        private void Dot(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -210,17 +84,26 @@ namespace Calculator
             }
         }
 
-        void ClickAddNumber(object sender, RoutedEventArgs e)
+        private void ClickAddNumber(object sender, RoutedEventArgs e)
         {
             try
             {
                 string s = (string)((Button)e.OriginalSource).Content;
                 if (current[0] == '0')
                 {
-                    if (current.Length == 1) current = s;
-                    else 
-                    //if (current.Contains('.')) 
-                        current += s;
+                    if (current.Length == 1)
+                    {
+                        if (sign.Equals("="))
+                        {
+                            result.Content = "";
+                            total = "";
+                            sign = "";
+                        }
+
+                        current = s;
+                    }
+                    else current += s;
+                    
                 }
                 else current += s;
                 input.Content = current;
@@ -231,7 +114,7 @@ namespace Calculator
             }
         }
 
-        void Neg(object sender, RoutedEventArgs e)
+        private void Neg(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -244,5 +127,50 @@ namespace Calculator
                 MessageBox.Show(exc.Message);
             }
         }
+
+
+        void Equality(string chosenSign)
+        {
+            result.Content = total + sign + current + chosenSign;
+            DoOperation();
+            input.Content = current;
+            current = "0";
+            sign = chosenSign;
+        }
+        void DoOperation()
+        {
+            try
+            {
+                double num1 = double.Parse(total);
+                double num2 = double.Parse(current);
+                // И выполняем операцию
+                switch (sign)
+                {
+                    case "+":
+                        current = (num1 + num2).ToString();
+                        break;
+                    case "-":
+                        current = (num1 - num2).ToString();
+                        break;
+                    case "*":
+                        //double x = Math.Round(num1 * num2, 5);
+                        current = (num1 * num2).ToString();
+                        break;
+                    case "/":
+                        current = (num1 / num2).ToString();
+                        break;
+                }
+            }
+            catch (Exception)
+            {
+                current = "";
+                sign = "";
+                total = "";
+                result.Content = "";
+                input.Content = "";
+                MessageBox.Show("Недостаточно операндов и/или нет знака операции.\nОчищаю все поля");
+            }
+        }
+
     }
 }
