@@ -32,16 +32,25 @@ namespace Calculator
             {
                 string chosenSign = (string)((Button)e.OriginalSource).Content;
 
-                ///При нажатии на кнопку операции
+                ///
+                /// 
+                ///При нажатии на кнопку операции,
+                ///если предыдущей операции нет, то  
+                ///в поле total запишется текущее число 
+                ///sign получит знак текущей операции, а поле current будет очищено
+                ///
+                /// 
+                /// 
+                ///При нажатии на кнопку операции,
+                ///если предыдущая операция осталась,
                 ///будет выполняться предыдущая введенная функция (если она есть),
                 ///т.е. в поле total запишется результат операции полей current и total
                 ///sign получит знак текущей операции, а поле current будет очищено
                 ///
                 /// 
-                /// 
-                ///Если  же операции нет, то тогда просто 
-                ///в поле total запишется текущее число 
-                ///sign получит знак текущей операции, а поле current будет очищено
+                ///
+                ///При нажатии на равно
+
 
                 if (sign.Equals(""))
                 {
@@ -61,6 +70,11 @@ namespace Calculator
                     else
                     {
                         DoOperation();
+                        result.Content = current + chosenSign;
+                        input.Content = "0";
+                        total = current;
+                        sign = chosenSign;
+                        current = "0";
                     }
                 }
             }
@@ -75,7 +89,15 @@ namespace Calculator
             try
             {
                 if (!current.Contains(','))
+                {
+                    if (!sign.Equals(""))
+                    {
+                        result.Content = "";
+                        total = "";
+                        sign = "";
+                    }
                     current += ",";
+                }
                 input.Content = current;
             }
             catch (Exception exc)
