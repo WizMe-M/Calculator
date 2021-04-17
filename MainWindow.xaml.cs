@@ -248,5 +248,12 @@ namespace Calculator
             current = num.ToString();
             input.Content = current;
         }
+
+        private void InzhenernyiCalcClick(object sender, RoutedEventArgs e)
+        {
+            Hide();
+            InzhenernyiWindow window = new InzhenernyiWindow();
+            window.Show();
+        }
     }
 }

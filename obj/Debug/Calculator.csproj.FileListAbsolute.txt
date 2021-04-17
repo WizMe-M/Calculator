@@ -28,3 +28,5 @@ C:\Users\ender\source\repos\Bases of Algorythm and Coding\Calculator\obj\Debug\C
 C:\Users\ender\source\repos\Bases of Algorythm and Coding\Calculator\obj\Debug\Calculator.csproj.CoreCompileInputs.cache
 C:\Users\ender\source\repos\Bases of Algorythm and Coding\Calculator\obj\Debug\Calculator.exe
 C:\Users\ender\source\repos\Bases of Algorythm and Coding\Calculator\obj\Debug\Calculator.pdb
+C:\Users\ender\source\repos\Bases of Algorythm and Coding\Calculator\obj\Debug\InzhenernyiWindow.g.cs
+C:\Users\ender\source\repos\Bases of Algorythm and Coding\Calculator\obj\Debug\InzhenernyiWindow.baml

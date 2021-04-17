@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Calculator"
         mc:Ignorable="d"
-        Title="Калькулятор" Height="500" Width="500" Icon="Icon.png" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="Калькулятор" Height="562" Width="500" Icon="Icon.png" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style x:Key="Operation" TargetType="Button">
             <Setter Property="FontFamily" Value="Verdana"/>
@@ -39,7 +39,7 @@
             <Setter Property="Foreground" Value="Black"/>
         </Style>
     </Window.Resources>
-    <Grid x:Name="UI" Background="White">
+    <Grid Background="White">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
@@ -47,6 +47,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="0.5*"/>
             <RowDefinition Height="0.5*"/>
             <RowDefinition/>
             <RowDefinition/>
@@ -56,32 +57,37 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Label x:Name="result"  Grid.Row="0" Grid.ColumnSpan="4" Style="{StaticResource GrayLab}" FontSize="14"/>
-        <Label x:Name="input" Content="0" Grid.Row="1" Grid.ColumnSpan="4" Style="{StaticResource GrayLab}" FontSize="20"/>
-        <Button Grid.Column="0" Grid.Row="2" Content="%" Style="{StaticResource Other}" Click="GetPercent"/>
-        <Button Grid.Column="1" Grid.Row="2" Content="CE" Style="{StaticResource Other}" Click="CE_Click"/>
-        <Button Grid.Column="2" Grid.Row="2" Content="C" Style="{StaticResource Other}" Click="C_Click"/>
-        <Button Grid.Column="3" Grid.Row="2" Content="DLT" Style="{StaticResource Other}" Click="DLT_CLick"/>
-        <Button Grid.Column="0" Grid.Row="3" Content="1/x" Style="{StaticResource Other}" Click="Opposite"/>
-        <Button Grid.Column="1" Grid.Row="3" Content="x^2" Style="{StaticResource Other}" Click="Square"/>
-        <Button Grid.Column="2" Grid.Row="3" Content="√x" Style="{StaticResource Other}" Click="Sqrt"/>
-        <Button Grid.Column="3" Grid.Row="3" Content="=" Style="{StaticResource Operation}"/>
-        <Button Grid.Column="0" Grid.Row="4" Content="7" Style="{StaticResource Number}"/>
-        <Button Grid.Column="1" Grid.Row="4" Content="8" Style="{StaticResource Number}"/>
-        <Button Grid.Column="2" Grid.Row="4" Content="9" Style="{StaticResource Number}"/>
-        <Button Grid.Column="3" Grid.Row="4" Content="*" Style="{StaticResource Operation}"/>
-        <Button Grid.Column="0" Grid.Row="5" Content="4" Style="{StaticResource Number}"/>
-        <Button Grid.Column="1" Grid.Row="5" Content="5" Style="{StaticResource Number}"/>
-        <Button Grid.Column="2" Grid.Row="5" Content="6" Style="{StaticResource Number}"/>
-        <Button Grid.Column="3" Grid.Row="5" Content="/" Style="{StaticResource Operation}"/>
-        <Button Grid.Column="0" Grid.Row="6" Content="1" Style="{StaticResource Number}"/>
-        <Button Grid.Column="1" Grid.Row="6" Content="2" Style="{StaticResource Number}"/>
-        <Button Grid.Column="2" Grid.Row="6" Content="3" Style="{StaticResource Number}"/>
-        <Button Grid.Column="3" Grid.Row="6" Content="+" Style="{StaticResource Operation}"/>
-        <Button Grid.Column="0" Grid.Row="7" Content="+/-" Style="{StaticResource Other}" Click="Neg"/>
-        <Button Grid.Column="1" Grid.Row="7" Content="0" Style="{StaticResource Number}"/>
-        <Button Grid.Column="2" Grid.Row="7" Content="." Style="{StaticResource Other}" Click="Dot"/>
-        <Button Grid.Column="3" Grid.Row="7" Content="-" Style="{StaticResource Operation}"/>
+        <Menu Grid.ColumnSpan="4" Grid.Row="0">
+            <MenuItem Header="Обычный" IsEnabled="False"/>
+            <MenuItem Header="Инженерный" Click="InzhenernyiCalcClick"/>
+            <MenuItem Header="Программистский"/>
+        </Menu>
+        <Label x:Name="result"  Grid.Row="1" Grid.ColumnSpan="4" Style="{StaticResource GrayLab}" FontSize="14"/>
+        <Label x:Name="input" Content="0" Grid.Row="2" Grid.ColumnSpan="4" Style="{StaticResource GrayLab}" FontSize="20"/>
+        <Button Grid.Column="0" Grid.Row="3" Content="%" Style="{StaticResource Other}" Click="GetPercent"/>
+        <Button Grid.Column="1" Grid.Row="3" Content="CE" Style="{StaticResource Other}" Click="CE_Click"/>
+        <Button Grid.Column="2" Grid.Row="3" Content="C" Style="{StaticResource Other}" Click="C_Click"/>
+        <Button Grid.Column="3" Grid.Row="3" Content="DLT" Style="{StaticResource Other}" Click="DLT_CLick"/>
+        <Button Grid.Column="0" Grid.Row="4" Content="1/x" Style="{StaticResource Other}" Click="Opposite"/>
+        <Button Grid.Column="1" Grid.Row="4" Content="x^2" Style="{StaticResource Other}" Click="Square"/>
+        <Button Grid.Column="2" Grid.Row="4" Content="√x" Style="{StaticResource Other}" Click="Sqrt"/>
+        <Button Grid.Column="3" Grid.Row="4" Content="=" Style="{StaticResource Operation}"/>
+        <Button Grid.Column="0" Grid.Row="5" Content="7" Style="{StaticResource Number}"/>
+        <Button Grid.Column="1" Grid.Row="5" Content="8" Style="{StaticResource Number}"/>
+        <Button Grid.Column="2" Grid.Row="5" Content="9" Style="{StaticResource Number}"/>
+        <Button Grid.Column="3" Grid.Row="5" Content="*" Style="{StaticResource Operation}"/>
+        <Button Grid.Column="0" Grid.Row="6" Content="4" Style="{StaticResource Number}"/>
+        <Button Grid.Column="1" Grid.Row="6" Content="5" Style="{StaticResource Number}"/>
+        <Button Grid.Column="2" Grid.Row="6" Content="6" Style="{StaticResource Number}"/>
+        <Button Grid.Column="3" Grid.Row="6" Content="/" Style="{StaticResource Operation}"/>
+        <Button Grid.Column="0" Grid.Row="7" Content="1" Style="{StaticResource Number}"/>
+        <Button Grid.Column="1" Grid.Row="7" Content="2" Style="{StaticResource Number}"/>
+        <Button Grid.Column="2" Grid.Row="7" Content="3" Style="{StaticResource Number}"/>
+        <Button Grid.Column="3" Grid.Row="7" Content="+" Style="{StaticResource Operation}"/>
+        <Button Grid.Column="0" Grid.Row="8" Content="+/-" Style="{StaticResource Other}" Click="Neg"/>
+        <Button Grid.Column="1" Grid.Row="8" Content="0" Style="{StaticResource Number}"/>
+        <Button Grid.Column="2" Grid.Row="8" Content="." Style="{StaticResource Other}" Click="Dot"/>
+        <Button Grid.Column="3" Grid.Row="8" Content="-" Style="{StaticResource Operation}"/>
 
     </Grid>
 </Window>
