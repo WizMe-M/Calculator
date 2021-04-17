@@ -217,17 +217,36 @@ namespace Calculator
             }
         }
 
-        //private void Opposite(object sender, RoutedEventArgs e)
-        //{
-        //    double num = double.Parse(current);
-        //    num = 1 / num;
-        //    current = num.ToString();
-        //    input.Content = current;
-        //}
+        private void Opposite(object sender, RoutedEventArgs e)
+        {
+            double num = double.Parse(current);
+            num = 1 / num;
+            current = num.ToString();
+            input.Content = current;
+        }
 
         private void Square(object sender, RoutedEventArgs e)
         {
+            double num = double.Parse(current);
+            num = Math.Pow(num,2);
+            current = num.ToString();
+            input.Content = current;
+        }
 
+        private void Sqrt(object sender, RoutedEventArgs e)
+        {
+            double num = double.Parse(current);
+            num = Math.Sqrt(num);
+            current = num.ToString();
+            input.Content = current;
+        }
+
+        private void GetPercent(object sender, RoutedEventArgs e)
+        {
+            double num = double.Parse(current);
+            num /= 100;
+            current = num.ToString();
+            input.Content = current;
         }
     }
 }
