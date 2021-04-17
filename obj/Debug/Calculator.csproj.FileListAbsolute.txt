@@ -13,3 +13,18 @@ C:\Users\Макс\source\repos\Bases_of_algorythm_and_cosing\Calculator\obj\Debu
 C:\Users\Макс\source\repos\Bases_of_algorythm_and_cosing\Calculator\obj\Debug\Calculator.csproj.CoreCompileInputs.cache
 C:\Users\Макс\source\repos\Bases_of_algorythm_and_cosing\Calculator\obj\Debug\Calculator.exe
 C:\Users\Макс\source\repos\Bases_of_algorythm_and_cosing\Calculator\obj\Debug\Calculator.pdb
+C:\Users\ender\source\repos\Bases of Algorythm and Coding\Calculator\bin\Debug\Calculator.exe.config
+C:\Users\ender\source\repos\Bases of Algorythm and Coding\Calculator\bin\Debug\Calculator.exe
+C:\Users\ender\source\repos\Bases of Algorythm and Coding\Calculator\bin\Debug\Calculator.pdb
+C:\Users\ender\source\repos\Bases of Algorythm and Coding\Calculator\obj\Debug\Calculator.csprojAssemblyReference.cache
+C:\Users\ender\source\repos\Bases of Algorythm and Coding\Calculator\obj\Debug\MainWindow.g.cs
+C:\Users\ender\source\repos\Bases of Algorythm and Coding\Calculator\obj\Debug\App.g.cs
+C:\Users\ender\source\repos\Bases of Algorythm and Coding\Calculator\obj\Debug\Calculator_MarkupCompile.cache
+C:\Users\ender\source\repos\Bases of Algorythm and Coding\Calculator\obj\Debug\Calculator_MarkupCompile.lref
+C:\Users\ender\source\repos\Bases of Algorythm and Coding\Calculator\obj\Debug\MainWindow.baml
+C:\Users\ender\source\repos\Bases of Algorythm and Coding\Calculator\obj\Debug\Calculator.g.resources
+C:\Users\ender\source\repos\Bases of Algorythm and Coding\Calculator\obj\Debug\Calculator.Properties.Resources.resources
+C:\Users\ender\source\repos\Bases of Algorythm and Coding\Calculator\obj\Debug\Calculator.csproj.GenerateResource.cache
+C:\Users\ender\source\repos\Bases of Algorythm and Coding\Calculator\obj\Debug\Calculator.csproj.CoreCompileInputs.cache
+C:\Users\ender\source\repos\Bases of Algorythm and Coding\Calculator\obj\Debug\Calculator.exe
+C:\Users\ender\source\repos\Bases of Algorythm and Coding\Calculator\obj\Debug\Calculator.pdb

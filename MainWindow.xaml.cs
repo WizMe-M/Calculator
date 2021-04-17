@@ -20,86 +20,233 @@ namespace Calculator
     /// </summary>
     public partial class MainWindow : Window
     {
-        string first = ""; string second = ""; string sign = "";
+        string current = "0"; string sign = ""; string total = "";
         public MainWindow()
         {
             InitializeComponent();
-            foreach (UIElement c in UI.Children) 
-                if(c is Button)
-                    ((Button)c).Click += Click;
         }
-        void Click(object sender, RoutedEventArgs e)
+
+        private void ClickOperation(object sender, RoutedEventArgs e)
         {
-            string s = (string)((Button)e.OriginalSource).Content;
-            textBlock.Text += s;
-            int x;
-            bool isnum = Int32.TryParse(s, out x);
-            if (isnum)
-            { 
-                if (sign == "") first += s; 
-                else second += s; 
-            }
-            else 
+            try
             {
-                switch (s)
+                string chosenSign = (string)((Button)e.OriginalSource).Content;
+                CheckExcessZeroOrDot();
+
+                if (sign.Equals(""))
                 {
-                    case "=": 
-                        Operation();
-                        Result.Text += second; //что не так???
-                        sign = "";
+                    total = current;
+                    sign = chosenSign;
+                    current = "0";
+
+                    result.Content = total + sign;
+                    input.Content = current;
+                }
+                else
+                {
+                    if (chosenSign.Equals("="))
+                    {
+                        Equality(chosenSign);
+                    }
+                    else
+                    {
+                        DoOperation();
+                        result.Content = current + chosenSign;
+                        input.Content = "0";
+                        total = current;
+                        sign = chosenSign;
+                        current = "0";
+                    }
+                }
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+        }
+
+        private void Dot(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (!current.Contains(','))
+                    current += ",";
+
+                input.Content = current;
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+        }
+
+        private void ClickAddNumber(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string s = (string)((Button)e.OriginalSource).Content;
+
+                if (sign.Equals("="))
+                {
+                    current = "0";
+                    result.Content = "";
+                    total = "";
+                    sign = "";
+                }
+
+                if (current[0] == '0')
+                {
+                    if (current.Length == 1)
+                    {
+
+                        current = s;
+                    }
+                    else current += s;
+
+                }
+                else current += s;
+                input.Content = current;
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+        }
+
+        private void Neg(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                double num = double.Parse(current);
+                current = (-num).ToString();
+                input.Content = current;
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+        }
+
+
+        void Equality(string chosenSign)
+        {
+            result.Content = total + sign + current + chosenSign;
+            DoOperation();
+            input.Content = current;
+            //current = "0";
+            sign = chosenSign;
+        }
+        void DoOperation()
+        {
+            try
+            {
+                double num1 = double.Parse(total);
+                double num2 = double.Parse(current);
+                // И выполняем операцию
+                switch (sign)
+                {
+                    case "+":
+                        current = (num1 + num2).ToString();
                         break;
-                    case "%":
-                        Operation();
-                        int num = Int32.Parse(second);
-                        second = (num / 100).ToString() + "%";
-                        Result.Text += second;
-                        sign = "";
+                    case "-":
+                        current = (num1 - num2).ToString();
                         break;
-                    case "CE":
-                        first = "";
-                        second = "";
-                        sign = "";
-                        Result.Text = "";
+                    case "*":
+                        //double x = Math.Round(num1 * num2, 5);
+                        current = (num1 * num2).ToString();
                         break;
-                    case "C":
-                        second = "";
-                        Result.Text = first + sign;
-                        break;
-                    case "Delete":
-                        if (second.Length != 0)
-                            second = second.Remove(second.Length - 1);
-                        break;
-                    default:
-                        if (second != "")
-                        {
-                            Operation();
-                            first = second;
-                            second = "";
-                        }
-                        sign = s;
+                    case "/":
+                        current = (num1 / num2).ToString();
                         break;
                 }
             }
-        }
-        void Operation()
-        {
-            int num1 = Int32.Parse(first);
-            int num2 = Int32.Parse(second);
-            switch (sign)
+            catch (Exception exc)
             {
-                case "+":
-                    second = (num1 + num2).ToString();
-                    break;
-                case "-":
-                    second = (num1 - num2).ToString();
-                    break;
-                case "*":
-                    second = (num1 * num2).ToString();
-                    break;
-                case "/":
-                    second = (num1 / num2).ToString();
-                    break;
+                current = "";
+                sign = "";
+                total = "";
+                result.Content = "";
+                input.Content = "";
+                MessageBox.Show(exc.Message);
             }
+        }
+        void CheckExcessZeroOrDot()
+        {
+            while (current[current.Length - 1] == '0' || current[current.Length - 1] == ',')
+                if (current.Contains(',')) current = current.Substring(0, current.Length - 1);
+                else break;
+
+        }
+
+        private void CE_Click(object sender, RoutedEventArgs e)
+        {
+            if (sign.Equals("="))
+            {
+                total = "";
+                sign = "";
+            }
+            current = "0";
+            input.Content = current;
+            result.Content = total + sign;
+        }
+
+        private void C_Click(object sender, RoutedEventArgs e)
+        {
+            current = "0";
+            sign = "";
+            total = "";
+            result.Content = total + sign;
+            input.Content = current;
+        }
+
+        private void DLT_CLick(object sender, RoutedEventArgs e)
+        {
+            if (sign.Equals("="))
+            {
+                total = "";
+                sign = "";
+                result.Content = "";
+                current = "0";
+            }
+            else
+            {
+                current = current.Substring(0, current.Length - 1);
+                if (current.Equals(""))
+                    current = "0";
+                input.Content = current;
+            }
+        }
+
+        private void Opposite(object sender, RoutedEventArgs e)
+        {
+            double num = double.Parse(current);
+            num = 1 / num;
+            current = num.ToString();
+            input.Content = current;
+        }
+
+        private void Square(object sender, RoutedEventArgs e)
+        {
+            double num = double.Parse(current);
+            num = Math.Pow(num,2);
+            current = num.ToString();
+            input.Content = current;
+        }
+
+        private void Sqrt(object sender, RoutedEventArgs e)
+        {
+            double num = double.Parse(current);
+            num = Math.Sqrt(num);
+            current = num.ToString();
+            input.Content = current;
+        }
+
+        private void GetPercent(object sender, RoutedEventArgs e)
+        {
+            double num = double.Parse(current);
+            num /= 100;
+            current = num.ToString();
+            input.Content = current;
         }
     }
 }
