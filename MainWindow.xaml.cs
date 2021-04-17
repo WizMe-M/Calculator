@@ -31,26 +31,6 @@ namespace Calculator
             try
             {
                 string chosenSign = (string)((Button)e.OriginalSource).Content;
-
-                ///
-                /// 
-                ///При нажатии на кнопку операции,
-                ///если предыдущей операции нет, то  
-                ///в поле total запишется текущее число 
-                ///sign получит знак текущей операции, а поле current будет очищено
-                ///
-                /// 
-                /// 
-                ///При нажатии на кнопку операции,
-                ///если предыдущая операция осталась,
-                ///будет выполняться предыдущая введенная функция (если она есть),
-                ///т.е. в поле total запишется результат операции полей current и total
-                ///sign получит знак текущей операции, а поле current будет очищено
-                ///
-                /// 
-                ///
-                ///При нажатии на равно
-
                 CheckExcessZeroOrDot();
 
                 if (sign.Equals(""))
@@ -137,7 +117,7 @@ namespace Calculator
         {
             try
             {
-                double num = Double.Parse(current);
+                double num = double.Parse(current);
                 current = (-num).ToString();
                 input.Content = current;
             }
@@ -195,6 +175,58 @@ namespace Calculator
             while (current[current.Length - 1] == '0' || current[current.Length - 1] == ',')
                 if (current.Contains(',')) current = current.Substring(0, current.Length - 1);
                 else break;
+
+        }
+
+        private void CE_Click(object sender, RoutedEventArgs e)
+        {
+            if (sign.Equals("="))
+            {
+                total = "";
+                sign = "";
+            }
+            current = "0";
+            input.Content = current;
+            result.Content = total + sign;
+        }
+
+        private void C_Click(object sender, RoutedEventArgs e)
+        {
+            current = "0";
+            sign = "";
+            total = "";
+            result.Content = total + sign;
+            input.Content = current;
+        }
+
+        private void DLT_CLick(object sender, RoutedEventArgs e)
+        {
+            if (sign.Equals("="))
+            {
+                total = "";
+                sign = "";
+                result.Content = "";
+                current = "0";
+            }
+            else
+            {
+                current = current.Substring(0, current.Length - 1);
+                if (current.Equals(""))
+                    current = "0";
+                input.Content = current;
+            }
+        }
+
+        //private void Opposite(object sender, RoutedEventArgs e)
+        //{
+        //    double num = double.Parse(current);
+        //    num = 1 / num;
+        //    current = num.ToString();
+        //    input.Content = current;
+        //}
+
+        private void Square(object sender, RoutedEventArgs e)
+        {
 
         }
     }
