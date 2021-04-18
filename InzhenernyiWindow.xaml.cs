@@ -134,7 +134,6 @@ namespace Calculator
             result.Content = total + sign + current + chosenSign;
             DoOperation();
             input.Content = current;
-            //current = "0";
             sign = chosenSign;
         }
         void DoOperation()
@@ -249,14 +248,13 @@ namespace Calculator
             current = num.ToString();
             input.Content = current;
         }
-
-        private void InzhenernyiCalcClick(object sender, RoutedEventArgs e)
+        private void Absolute(object sender, RoutedEventArgs e)
         {
-            Hide();
-            InzhenernyiWindow window = new InzhenernyiWindow();
-            window.Show();
+            double num = double.Parse(current);
+            num = Math.Abs(num);
+            current = num.ToString();
+            input.Content = current;
         }
-
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
@@ -265,6 +263,66 @@ namespace Calculator
             {
                 mainWindow.Close();
             }
+        }
+
+        private void Equality(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AddPI(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AddE(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Sinus(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Cosinus(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Tangens(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AddLeftBracket(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AddRightBracket(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Factorial(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void TenPowX(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Log(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void LogN(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

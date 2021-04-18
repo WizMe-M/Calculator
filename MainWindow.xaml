@@ -31,13 +31,13 @@
         </Menu>
         <Label x:Name="result"  Grid.Row="1" Grid.ColumnSpan="4" Style="{StaticResource GrayLab}" FontSize="14"/>
         <Label x:Name="input" Content="0" Grid.Row="2" Grid.ColumnSpan="4" Style="{StaticResource GrayLab}" FontSize="20"/>
-        <Button Grid.Column="0" Grid.Row="3" Content="%" Style="{StaticResource Other}" Click="GetPercent"/>
-        <Button Grid.Column="1" Grid.Row="3" Content="CE" Style="{StaticResource Other}" Click="CE_Click"/>
-        <Button Grid.Column="2" Grid.Row="3" Content="C" Style="{StaticResource Other}" Click="C_Click"/>
-        <Button Grid.Column="3" Grid.Row="3" Content="DLT" Style="{StaticResource Other}" Click="DLT_CLick"/>
-        <Button Grid.Column="0" Grid.Row="4" Content="1/x" Style="{StaticResource Other}" Click="Opposite"/>
-        <Button Grid.Column="1" Grid.Row="4" Content="x^2" Style="{StaticResource Other}" Click="Square"/>
-        <Button Grid.Column="2" Grid.Row="4" Content="√x" Style="{StaticResource Other}" Click="Sqrt"/>
+        <Button Grid.Column="0" Grid.Row="3" Content="%" Style="{StaticResource Operation}" Click="GetPercent"/>
+        <Button Grid.Column="1" Grid.Row="3" Content="CE" Style="{StaticResource Operation}" Click="CE_Click"/>
+        <Button Grid.Column="2" Grid.Row="3" Content="C" Style="{StaticResource Operation}" Click="C_Click"/>
+        <Button Grid.Column="3" Grid.Row="3" Content="DLT" Style="{StaticResource Operation}" Click="DLT_CLick"/>
+        <Button Grid.Column="0" Grid.Row="4" Content="1/x" Style="{StaticResource Operation}" Click="Opposite"/>
+        <Button Grid.Column="1" Grid.Row="4" Content="x^2" Style="{StaticResource Operation}" Click="Square"/>
+        <Button Grid.Column="2" Grid.Row="4" Content="√x" Style="{StaticResource Operation}" Click="Sqrt"/>
         <Button Grid.Column="3" Grid.Row="4" Content="=" Style="{StaticResource Operation}" Click="ClickOperation"/>
         <Button Grid.Column="0" Grid.Row="5" Content="7" Style="{StaticResource Number}" Click="ClickAddNumber"/>
         <Button Grid.Column="1" Grid.Row="5" Content="8" Style="{StaticResource Number}" Click="ClickAddNumber"/>
@@ -51,9 +51,9 @@
         <Button Grid.Column="1" Grid.Row="7" Content="2" Style="{StaticResource Number}" Click="ClickAddNumber"/>
         <Button Grid.Column="2" Grid.Row="7" Content="3" Style="{StaticResource Number}" Click="ClickAddNumber"/>
         <Button Grid.Column="3" Grid.Row="7" Content="+" Style="{StaticResource Operation}" Click="ClickOperation"/>
-        <Button Grid.Column="0" Grid.Row="8" Content="+/-" Style="{StaticResource Other}" Click="Neg"/>
+        <Button Grid.Column="0" Grid.Row="8" Content="+/-" Style="{StaticResource Operation}" Click="Neg"/>
         <Button Grid.Column="1" Grid.Row="8" Content="0" Style="{StaticResource Number}" Click="ClickAddNumber"/>
-        <Button Grid.Column="2" Grid.Row="8" Content="." Style="{StaticResource Other}" Click="Dot"/>
+        <Button Grid.Column="2" Grid.Row="8" Content="." Style="{StaticResource Operation}" Click="Dot"/>
         <Button Grid.Column="3" Grid.Row="8" Content="-" Style="{StaticResource Operation}" Click="ClickOperation"/>
 
     </Grid>
