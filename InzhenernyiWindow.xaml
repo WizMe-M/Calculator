@@ -28,9 +28,9 @@
         </Grid.RowDefinitions>
         
         <Menu Grid.ColumnSpan="5" Grid.Row="0">
-            <MenuItem Header="Обычный" />
+            <MenuItem Header="Обычный" Click="MenuItem_Click" />
             <MenuItem Header="Инженерный" IsEnabled="False"/>
-            <MenuItem Header="Программистский"/>
+            <MenuItem Header="Программистский" Click="MenuItem_Click_1"/>
         </Menu>
         <Label x:Name="result"  Grid.Row="1" Grid.ColumnSpan="5" Style="{StaticResource GrayLab}" FontSize="14"/>
         <Label x:Name="input" Content="0" Grid.Row="2" Grid.ColumnSpan="5" Style="{StaticResource GrayLab}" FontSize="20"/>
@@ -53,7 +53,7 @@
         <Button Grid.Column="3" Grid.Row="5" Content="n!" Style="{StaticResource Operation}" Click="Factorial"/>
         <Button Grid.Column="4" Grid.Row="5" Content="=" Style="{StaticResource Operation}" Click="Equality"/>
         
-        <Button Grid.Column="0" Grid.Row="6" Content="x^y" Style="{StaticResource Operation}" Click="ClickOperation"/>
+        <Button Grid.Column="0" Grid.Row="6" Content="x^y" Style="{StaticResource Operation}" Click="Pow"/>
         <Button Grid.Column="1" Grid.Row="6" Content="7" Style="{StaticResource Number}" Click="ClickAddNumber"/>
         <Button Grid.Column="2" Grid.Row="6" Content="8" Style="{StaticResource Number}" Click="ClickAddNumber"/>
         <Button Grid.Column="3" Grid.Row="6" Content="9" Style="{StaticResource Number}" Click="ClickAddNumber"/>
