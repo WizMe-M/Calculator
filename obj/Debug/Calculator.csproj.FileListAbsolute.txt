@@ -33,3 +33,5 @@ C:\Users\ender\source\repos\Bases of Algorythm and Coding\Calculator\obj\Debug\I
 C:\Users\ender\source\repos\Bases of Algorythm and Coding\Calculator\obj\Debug\Dictionary.g.cs
 C:\Users\ender\source\repos\Bases of Algorythm and Coding\Calculator\obj\Debug\App.baml
 C:\Users\ender\source\repos\Bases of Algorythm and Coding\Calculator\obj\Debug\Dictionary.baml
+C:\Users\ender\source\repos\Bases of Algorythm and Coding\Calculator\obj\Debug\Programmistskiy.g.cs
+C:\Users\ender\source\repos\Bases of Algorythm and Coding\Calculator\obj\Debug\Programmistskiy.baml

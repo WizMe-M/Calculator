@@ -243,10 +243,20 @@ namespace Calculator
 
         private void GetPercent(object sender, RoutedEventArgs e)
         {
-            double num = double.Parse(current);
-            num /= 100;
-            current = num.ToString();
-            input.Content = current;
+            if (string.IsNullOrEmpty(sign))
+            {
+                result.Content = "0";
+                input.Content = "0";
+                current = "0";
+                total = "";
+            }
+            else
+            {
+                double num = double.Parse(current);
+                double x = double.Parse(total);
+                current = (x / 100 * num).ToString();
+                input.Content = current;
+            }
         }
 
         private void InzhenernyiCalcClick(object sender, RoutedEventArgs e)

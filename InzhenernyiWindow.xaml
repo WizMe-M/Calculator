@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Calculator"
         mc:Ignorable="d"
-        Title="InzhenernyiWindow" Height="550.5" Width="498.5" Closing="Window_Closing">
+        Title="Калькулятор" Height="550.5" Width="498.5" Closing="Window_Closing">
     <Grid Background="White">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -30,7 +30,7 @@
         <Menu Grid.ColumnSpan="5" Grid.Row="0">
             <MenuItem Header="Обычный" Click="MenuItem_Click" />
             <MenuItem Header="Инженерный" IsEnabled="False"/>
-            <MenuItem Header="Программистский" Click="MenuItem_Click_1"/>
+            <MenuItem Header="Программист" Click="MenuItem_Click_1"/>
         </Menu>
         <Label x:Name="result"  Grid.Row="1" Grid.ColumnSpan="5" Style="{StaticResource GrayLab}" FontSize="14"/>
         <Label x:Name="input" Content="0" Grid.Row="2" Grid.ColumnSpan="5" Style="{StaticResource GrayLab}" FontSize="20"/>

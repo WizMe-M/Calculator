@@ -27,7 +27,7 @@
         <Menu Grid.ColumnSpan="4" Grid.Row="0">
             <MenuItem Header="Обычный" IsEnabled="False"/>
             <MenuItem Header="Инженерный" Click="InzhenernyiCalcClick"/>
-            <MenuItem Header="Программистский"/>
+            <MenuItem Header="Программист"/>
         </Menu>
         <Label x:Name="result"  Grid.Row="1" Grid.ColumnSpan="4" Style="{StaticResource GrayLab}" FontSize="14"/>
         <Label x:Name="input" Content="0" Grid.Row="2" Grid.ColumnSpan="4" Style="{StaticResource GrayLab}" FontSize="20"/>

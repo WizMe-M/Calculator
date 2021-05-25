@@ -35,17 +35,42 @@ namespace Calculator
         {
             if (bracketCount == 0)
             {
-                var res = new DataTable().Compute(total + sign + current, null);
-                input.Content = res;
-                result.Content = total + sign + current;
+                result.Content += (string)input.Content;
+
+                if (lastbutton == "^")
+                {
+                    var x = new DataTable().Compute((string)result.Content, null);
+                    double num1 = (double)x;
+                    double num2 = double.Parse((string)input.Content);
+                    input.Content = (Math.Pow(num1, num2)).ToString();
+                    result.Content = x.ToString();
+                    current = "0";
+                }
+                else { 
+                    var res = new DataTable().Compute((string)result.Content, null);
+                    input.Content = res;
+                    current = "0";
+                }
             }
             else if (bracketCount == 1)
             {
                 total += current + ")";
                 result.Content = total;
-                var res = new DataTable().Compute(total + sign + current, null);
-                input.Content = res;
-                result.Content = total + sign + current;
+                if (lastbutton == "^")
+                {
+                    var x = new DataTable().Compute((string)result.Content, null);
+                    double num1 = (double)x;
+                    double num2 = double.Parse((string)input.Content);
+                    input.Content = (Math.Pow(num1, num2)).ToString();
+                    result.Content = x.ToString();
+                    current = "0";
+                }
+                else
+                {
+
+                    var res = new DataTable().Compute(total + sign + current, null);
+                    input.Content = res;
+                }
             }
             else MessageBox.Show("Проверьте выражение. Где-то не хватает скобки");
         }
@@ -56,26 +81,22 @@ namespace Calculator
             {
                 if (bracketCount == 0)
                 {
-                    var res = new DataTable().Compute(total, null);
-                    current = (string)res;
-                    double num1 = double.Parse(total);
-                    double num2 = double.Parse(current);
-                    // И выполняем операцию
-                    switch (sign)
+                    if (lastbutton == "^")
                     {
-                        case "+":
-                            current = (num1 + num2).ToString();
-                            break;
-                        case "-":
-                            current = (num1 - num2).ToString();
-                            break;
-                        case "*":
-                            //double x = Math.Round(num1 * num2, 5);
-                            current = (num1 * num2).ToString();
-                            break;
-                        case "/":
-                            current = (num1 / num2).ToString();
-                            break;
+                        var x = new DataTable().Compute((string)result.Content, null);
+                        double num1 = (double)x;
+                        double num2 = double.Parse((string)input.Content);
+                        input.Content = (Math.Pow(num1, num2)).ToString();
+                        result.Content = x.ToString();
+                        current = "0";
+                    }
+                    else
+                    {
+
+                        result.Content += current;
+                        var res = new DataTable().Compute((string)result.Content, null);
+                        current = res.ToString();
+                        input.Content = res.ToString();
                     }
                 }
                 else MessageBox.Show("Проверьте выражение. Где-то не хватает скобки");
@@ -121,9 +142,8 @@ namespace Calculator
                     else
                     {
                         DoOperation();
-                        result.Content = current + chosenSign;
-                        input.Content = "0";
-                        total = current;
+                        result.Content += chosenSign;
+                        input.Content = current;
                         sign = chosenSign;
                         current = "0";
                     }
@@ -183,7 +203,7 @@ namespace Calculator
         {
             try
             {
-                double num = double.Parse(current);
+                double num = double.Parse((string)input.Content);
                 current = (-num).ToString();
                 input.Content = current;
             }
@@ -224,7 +244,7 @@ namespace Calculator
         {
             try
             {
-                double num = double.Parse(current);
+                double num = double.Parse((string)input.Content);
                 num = 1 / num;
                 current = num.ToString();
                 input.Content = current;
@@ -239,7 +259,7 @@ namespace Calculator
         {
             try
             {
-                double num = double.Parse(current);
+                double num = double.Parse((string)input.Content);
                 num = Math.Pow(num, 2);
                 current = num.ToString();
                 input.Content = current;
@@ -254,7 +274,7 @@ namespace Calculator
         {
             try
             {
-                double num = double.Parse(current);
+                double num = double.Parse((string)input.Content);
                 num = Math.Sqrt(num);
                 current = num.ToString();
                 input.Content = current;
@@ -269,7 +289,7 @@ namespace Calculator
         {
             try
             {
-                double num = double.Parse(current);
+                double num = double.Parse((string)input.Content);
                 num = Math.Abs(num);
                 current = num.ToString();
                 input.Content = current;
@@ -294,21 +314,21 @@ namespace Calculator
 
         private void Sinus(object sender, RoutedEventArgs e)
         {
-            double gradusy = double.Parse(current);
+            double gradusy = double.Parse((string)input.Content);
             current = Math.Sin((gradusy / 180d) * Math.PI).ToString();
             input.Content = current;
         }
 
         private void Cosinus(object sender, RoutedEventArgs e)
         {
-            double gradusy = double.Parse(current);
+            double gradusy = double.Parse((string)input.Content);
             current = Math.Cos((gradusy / 180d) * Math.PI).ToString();
             input.Content = current;
         }
 
         private void Tangens(object sender, RoutedEventArgs e)
         {
-            double gradusy = double.Parse(current);
+            double gradusy = double.Parse((string)input.Content);
             current = Math.Tan((gradusy / 180d) * Math.PI).ToString();
             input.Content = current;
         }
@@ -322,11 +342,11 @@ namespace Calculator
 
         private void AddRightBracket(object sender, RoutedEventArgs e)
         {
-            if (bracketCount <= 0)
+            if (bracketCount > 0)
             {
                 bracketCount--;
-                total += current + ")";
-                result.Content += current + ")";
+                total += (string)input.Content + ")";
+                result.Content += (string)input.Content + ")";
                 Equality();
             }
         }
@@ -335,7 +355,7 @@ namespace Calculator
         {
             try
             {
-                double n = double.Parse(current);
+                double n = double.Parse((string)input.Content);
                 double res = 1;
                 if (n % 1 == 0)
                 {
@@ -359,7 +379,7 @@ namespace Calculator
         {
             try
             {
-                double n = double.Parse(current);
+                double n = double.Parse((string)input.Content);
                 current = Math.Pow(10, n).ToString();
                 input.Content = current;
             }
@@ -373,7 +393,7 @@ namespace Calculator
         {
             try
             {
-                double n = double.Parse(current);
+                double n = double.Parse((string)input.Content);
                 current = Math.Log10(n).ToString();
                 input.Content = current;
             }
@@ -387,7 +407,7 @@ namespace Calculator
         {
             try
             {
-                double n = double.Parse(current);
+                double n = double.Parse((string)input.Content);
                 current = Math.Log(n).ToString();
                 input.Content = current;
             }
@@ -411,18 +431,21 @@ namespace Calculator
         {
             try
             {
-                if (bracketCount == 0)
-                {
-                    Equality();
-                }
-                else if (bracketCount == 1)
-                {
-                    total += current + ")";
-                    result.Content = total;
-                    Equality();
-                }
-                else
-                    MessageBox.Show("Проверьте выражение. Где-то не хватает скобки");
+                //if (bracketCount == 0)
+                //{
+                //    result.Content += (string)input.Content;
+                //    total += (string)input.Content;
+                //    lastbutton = "^";
+                //    current = "0";
+
+                //}
+                //else if (bracketCount == 1)
+                //{
+                //    total += (string)input.Content + ")";
+                //    result.Content = total;
+                //}
+                //else
+                //    MessageBox.Show("Проверьте выражение. Где-то не хватает скобки");
             }
             catch (Exception exc)
             {
